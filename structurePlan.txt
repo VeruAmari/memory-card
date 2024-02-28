@@ -1,43 +1,54 @@
-File Structure
+Files Structure
+[*]-> defined useState variable
+[<Component>]-> is a react component
+[.uses]-> makes use of the state of a variable
+[.sets]-> makes use of the setState of a variable
+[* variable ? yes/no]-> conditional trigger to return react component
 
-App
+<App>
 |  |  * playing
 |  |  * stashes
 |  |  * stashesEmptied
 |  |  * success status
-|  |
-|  |- .uses * playing value
-|  
-|  * playing ? yes
-|--Game Screen
-|  |  * api card data request
-|  |
-|  |- .uses * stashes value
-|  |- .sets * emptied
-|  |- .sets * playing
-|  |- .sets * win/lose
-|
-|  * playing ? no
-|--Start/End Screen
 |  |  * picking
 |  |
-|  |- .uses * stashesEmptied
+|   ->.uses * playing value
+|  
+|
+|__* playing ? yes
+|--<Game Screen>
+|  |  * api card data request
 |  |
-|  |  * picking ? yes
-|  |--Start Screen
-|  |  |- .sets * stashes
-|  |  |- .sets * playing
+|  |->.uses * stashes value
+|  |->.sets * emptied
+|  |->.sets * playing
+|   ->.sets * win/lose
+|
+|
+|__* playing ? no
+|--<Start/End Screen>
 |  |
-|  |  * picking ? no
-|  |--End Screen
-|  |  |- .uses * success
+|  |->.uses * stashesEmptied
+|  |
+|  |
+|  |__* picking ? yes
+|  |--<Start Screen>
+|  |  |->.sets * stashes
+|  |   ->.sets * playing
+|  |
+|  |
+|  |__* picking ? no
+|  |--<End Screen>
+|  |  |->.uses * success
 |  |  |
-|  |  |  * success ? yes
-|  |  |--Win Screen
-|  |  |  |- .sets * playing
-|  |  |  |- .sets * picking
 |  |  |
-|  |  |  * success ? no
-|  |  |--Lose Screen
-|  |  |  |- .sets * playing
-|  |  |  |- .sets * picking
+|  |  |__* success ? yes
+|  |  |--<Success Screen>
+|  |  |  |->.sets * playing
+|  |  |   ->.sets * picking
+|  |  |
+|  |  |
+|  |  |__* success ? no
+|  |  |--<Sad Screen>
+|  |  |  |->.sets * playing
+|  |      ->.sets * picking
