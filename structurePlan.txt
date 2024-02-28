@@ -1,0 +1,43 @@
+File Structure
+
+App
+|  |  * playing
+|  |  * stashes
+|  |  * stashesEmptied
+|  |  * success status
+|  |
+|  |- .uses * playing value
+|  
+|  * playing ? yes
+|--Game Screen
+|  |  * api card data request
+|  |
+|  |- .uses * stashes value
+|  |- .sets * emptied
+|  |- .sets * playing
+|  |- .sets * win/lose
+|
+|  * playing ? no
+|--Start/End Screen
+|  |  * picking
+|  |
+|  |- .uses * stashesEmptied
+|  |
+|  |  * picking ? yes
+|  |--Start Screen
+|  |  |- .sets * stashes
+|  |  |- .sets * playing
+|  |
+|  |  * picking ? no
+|  |--End Screen
+|  |  |- .uses * success
+|  |  |
+|  |  |  * success ? yes
+|  |  |--Win Screen
+|  |  |  |- .sets * playing
+|  |  |  |- .sets * picking
+|  |  |
+|  |  |  * success ? no
+|  |  |--Lose Screen
+|  |  |  |- .sets * playing
+|  |  |  |- .sets * picking
