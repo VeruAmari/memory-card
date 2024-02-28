@@ -1,21 +1,37 @@
 import { useState } from 'react';
-import './App.css';
+import { Game } from './components/game';
+import { StartEnd } from './components/startOrEnd';
+import './styles/App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [stashes, setStashes] = useState(3);
+  const [stashesEmptied, setStashesEmptied] = useState(0);
+  const [success, setSuccess] = useState(null);
+  const [picking, setPicking] = useState(true);
 
   return (
     <>
-      <div>
-        <h1>Where did I hide the acorns?!</h1>
-        <h2
-          onClick={() => {
-            setCount((curr) => curr + 1);
-          }}
-        >
-          Acorn count: {count}
-        </h2>
-      </div>
+      {(playing && (
+        <Game
+          stashes={stashes}
+          setPlaying={setPlaying}
+          setStashesEmptied={setStashesEmptied}
+          stashesEmptied={stashesEmptied}
+          setSuccess={setSuccess}
+        ></Game>
+      )) || (
+        <StartEnd
+          setStashesEmptied={setStashesEmptied}
+          setPlaying={setPlaying}
+          stashes={stashes}
+          setStashes={setStashes}
+          success={success}
+          setSuccess={setSuccess}
+          picking={picking}
+          setPicking={setPicking}
+        ></StartEnd>
+      )}
     </>
   );
 }
