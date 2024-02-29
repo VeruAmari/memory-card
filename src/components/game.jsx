@@ -15,11 +15,12 @@ function Game({
 
   // Callback function, click handler
   function handleStashesEmptied(e) {
-    setStashesEmptied(stashesEmptied + 1);
     const newID = uniqueIDs[e.target.id] ? uniqueIDs[e.target.id] + 1 : 1;
     setUniqueIDs({ ...uniqueIDs, [e.target.id]: newID });
     if (newID > 1) {
       setSad(true);
+    } else {
+      setStashesEmptied(stashesEmptied + 1);
     }
   }
 
