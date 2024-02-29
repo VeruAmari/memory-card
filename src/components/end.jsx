@@ -12,14 +12,20 @@ function End({
 }) {
   function restart() {
     setSuccess(null);
+    setPlaying(true);
+    setPicking(false);
+    setStashesEmptied(0);
+  }
+  function mainMenu() {
+    setSuccess(null);
     setPlaying(false);
     setPicking(true);
     setStashesEmptied(0);
   }
 
   return (
-    (success && <Success restart={restart}></Success>) || (
-      <Sad restart={restart}></Sad>
+    (success && <Success mainMenu={mainMenu} restart={restart}></Success>) || (
+      <Sad mainMenu={mainMenu} restart={restart}></Sad>
     )
   );
 }
