@@ -14,10 +14,9 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
       <div>
         <h1 className="title">My Hidden Acorn Stashes</h1>
         <p className="description">
-          This squirrel just woke up from hibernation and is <i>starving!</i>{' '}
-          Thankfully, she recalls some of her hidden stashes. Can you help her
-          find her acorns so that she doesn&apos;t go back to an already emptied
-          stash?
+          This hungry squirrel recalls some of her hidden food stashes in the
+          forest. Can you help her find her acorns so that she doesn&apos;t
+          visit the same stash twice?
         </p>
         <button
           onClick={() => {
