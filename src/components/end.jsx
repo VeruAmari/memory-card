@@ -24,9 +24,11 @@ function End({
   }
 
   return (
-    (success && <Success mainMenu={mainMenu} restart={restart}></Success>) || (
-      <Sad mainMenu={mainMenu} restart={restart}></Sad>
-    )
+    <>
+      {(success && <Success />) || <Sad />}
+      <button onClick={restart}>Play Again</button>
+      <button onClick={mainMenu}>Main Menu</button>
+    </>
   );
 }
 
