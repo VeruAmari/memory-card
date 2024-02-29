@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Game } from './components/game';
 import { StartEnd } from './components/startOrEnd';
 import './styles/App.css';
@@ -10,6 +10,35 @@ function App() {
   const [success, setSuccess] = useState(null);
   const [picking, setPicking] = useState(true);
 
+  const [imageData, setImageData] = useState('');
+
+  /*
+  TODO: Integrate pexels API for images in cards
+  fetch("https://api.pexels.com/v1/search?query=forest",{
+  headers: {
+    Authorization: "YOUR_API_KEY"
+  }
+})
+   .then(resp => {
+     return resp.json()
+   })
+   .then(data => {
+     console.log(data)
+   })
+*/
+
+  useEffect(() => {
+    let ignore = false;
+    fetch().then((result) => {
+      if (!ignore) {
+        setImageData(result);
+      }
+    });
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
   return (
     <>
       {(playing && (
@@ -19,6 +48,7 @@ function App() {
           setStashesEmptied={setStashesEmptied}
           stashesEmptied={stashesEmptied}
           setSuccess={setSuccess}
+          imageData={imageData}
         ></Game>
       )) || (
         <StartEnd

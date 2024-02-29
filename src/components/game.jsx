@@ -7,11 +7,14 @@ function Game({
   stashesEmptied,
   setSuccess,
   setPlaying,
+  imageData,
 }) {
   let cards = [];
 
   const [uniqueIDs, setUniqueIDs] = useState({});
   const [sad, setSad] = useState(false);
+
+  // TODO: Randomize cards order.
 
   // Callback function, click handler
   function handleStashesEmptied(e) {
@@ -28,9 +31,12 @@ function Game({
   for (let i = 0; i < stashes; i += 1) {
     const cardId = `card-${i}`;
     cards.push(
-      <button onClick={handleStashesEmptied} id={cardId} key={i}>
-        Card
-      </button>,
+      <img
+        src={imageData[i].src.portrait}
+        onClick={handleStashesEmptied}
+        id={cardId}
+        key={i}
+      />,
     );
   }
 
