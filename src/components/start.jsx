@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 function Start({ stashes, setPicking, setStashes, setPlaying }) {
   function onChange(e) {
-    setStashes(Number(e.target.value));
+    let num = Number(e.target.value);
+    if (num > 0 && num < 16) {
+      setStashes(num);
+    }
   }
   function handleLeft() {
-    setStashes((curr) => curr - 1);
+    setStashes((curr) => (curr > 1 ? curr - 1 : curr));
   }
   function handleRight() {
-    setStashes((curr) => curr + 1);
+    setStashes((curr) => (curr < 15 ? curr + 1 : curr));
   }
   return (
     <>
