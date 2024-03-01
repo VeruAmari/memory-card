@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Game } from './components/game';
 import { StartEnd } from './components/startOrEnd';
+import data from './images.json';
 import './styles/App.css';
 
 function App() {
@@ -11,12 +12,11 @@ function App() {
   const [picking, setPicking] = useState(true);
 
   const [imageData, setImageData] = useState('');
-
   /*
   TODO: Integrate pexels API for images in cards
   fetch("https://api.pexels.com/v1/search?query=forest",{
   headers: {
-    Authorization: "YOUR_API_KEY"
+    Authorization: "nSA6af1OexPWH12Pso9EnmhgoBh3TPLAGvi6LYhoVghW5bc6pifHIJdK"
   }
 })
    .then(resp => {
@@ -26,19 +26,39 @@ function App() {
      console.log(data)
    })
 */
-
+  /*
   useEffect(() => {
     let ignore = false;
-    fetch().then((result) => {
-      if (!ignore) {
-        setImageData(result);
-      }
-    });
+    fetch('https://api.pexels.com/v1/search?query=forest', {
+      headers: {
+        Authorization:
+          'nSA6af1OexPWH12Pso9EnmhgoBh3TPLAGvi6LYhoVghW5bc6pifHIJdK',
+      },
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((result) => {
+        if (!ignore) {
+          setImageData(result);
+          console.log(result);
+        }
+      });
     return () => {
       ignore = true;
     };
   }, []);
-
+*/
+  useEffect(() => {
+    let ignore = false;
+    if (!ignore) {
+      setImageData(data);
+      console.log(data);
+    }
+    return () => {
+      ignore = true;
+    };
+  }, []);
   return (
     <>
       {(playing && (

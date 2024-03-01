@@ -30,13 +30,17 @@ function Game({
   // Creates all card elements
   for (let i = 0; i < stashes; i += 1) {
     const cardId = `card-${i}`;
+    const divStyle = {
+      backgroundImage: `url(${imageData.photos[i].src.tiny})`,
+    };
     cards.push(
-      <img
-        src={imageData[i].src.portrait}
+      <div
+        className="hidden stash"
         onClick={handleStashesEmptied}
         id={cardId}
         key={i}
-      />,
+        style={divStyle}
+      ></div>,
     );
   }
 
