@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import hungry from '../assets/hungry-squirrel.png';
+import hungryPortrait from '../assets/hungry-squirrel-portrait.png';
 function Start({ stashes, setPicking, setStashes, setPlaying }) {
   function onChange(e) {
     let num = Number(e.target.value);
@@ -15,11 +17,17 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
   return (
     <>
       <div>
-        <p className="description">
-          This hungry squirrel recalls some of her hidden food stashes in the
-          forest. Can you help her find her acorns so that she doesn&apos;t
-          visit the same stash twice?
-        </p>
+        <div className="hero">
+          <picture>
+            <source srcSet={hungryPortrait} media="(max-width: 600px)" />
+            <img src={hungry} alt="" />
+          </picture>
+          <p className="hero-text">
+            This hungry squirrel recalls some of her hidden food stashes in the
+            forest. Can you help her find her acorns so that she doesn&apos;t
+            visit the same stash twice?
+          </p>
+        </div>
         <button
           onClick={() => {
             if (stashes > 0) {
