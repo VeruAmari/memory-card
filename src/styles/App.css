@@ -6,14 +6,21 @@
   --color-1: #a5f1f4;
   --color-2: #ddfdc7;
   --color-3: #0b3936;
+  font-weight: 900;
+  --width: 200px;
 }
 .hidden.stash {
   border-radius: 15px;
   display: grid;
   aspect-ratio: 3/4;
-  width: 200px;
+  width: var(--width);
   background: center / cover no-repeat;
   transition: all ease-in-out 0.1s;
+}
+@media (max-width: 350px) {
+  #root {
+    --width: 110px;
+  }
 }
 .cards.container {
   padding: 2rem;
@@ -21,7 +28,7 @@
   align-items: center;
   justify-items: center;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
 }
 .hidden.stash:not(.hover-effects) {
   position: relative;
