@@ -10,6 +10,9 @@ This project makes use of [pexels API](https://www.pexels.com/api/) to get illus
 
 [The Odin Project: Memory Card Project](https://www.theodinproject.com/lessons/node-path-react-new-memory-card#assignment)
 
+## Live Preview
+["Acorn Stashes"](https://acorn-stashes.netlify.app/)
+
 ## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
