@@ -14,34 +14,8 @@ function Game({
   const [uniqueIDs, setUniqueIDs] = useState({});
   const [sad, setSad] = useState(false);
 
-  // TODO: Randomize cards order.
-
   const [randomized, setRandomized] = useState('');
-
-  /**
-   * I need to create a function that randomizes
-   * the order of backgrounds in a list.
-   *
-   */
-
-  function randomize() {
-    console.log('Running randomize.');
-    let next = [];
-    while (next.length < stashes) {
-      const chosenRandomNumber = Math.floor(Math.random() * 30) % stashes;
-      console.log('Chosen Random Number: ', chosenRandomNumber);
-      const newNum = chosenRandomNumber;
-      if (!next.includes(newNum)) {
-        next.push(newNum);
-      }
-    }
-    const num = {};
-    for (let i = 0; i < stashes; i++) {
-      num[`${i}`] = next.pop();
-    }
-
-    setRandomized({ ...num });
-  }
+  const [isRandomized, setIsRandomized] = useState(false);
 
   // Callback function, click handler
   function handleStashesEmptied(e) {
@@ -53,30 +27,47 @@ function Game({
     } else {
       setStashesEmptied(stashesEmptied + 1);
     }
-    randomize();
+    // Triggers randomizing on-click
+    setIsRandomized(false);
   }
 
+  // Randomize cards order
   useEffect(() => {
-    let isRandom = false;
-    if (!isRandom) {
+    function randomize() {
+      console.log('Running randomize.');
+      let next = [];
+      while (next.length < stashes) {
+        const chosenRandomNumber = Math.floor(Math.random() * 30) % stashes;
+        const newNum = chosenRandomNumber;
+        if (!next.includes(newNum)) {
+          next.push(newNum);
+        }
+      }
+      const num = {};
+      for (let i = 0; i < stashes; i++) {
+        num[`${i}`] = next.pop();
+      }
+
+      setRandomized({ ...num });
+    }
+
+    if (!isRandomized) {
       randomize();
     }
     return () => {
-      isRandom = true;
+      setIsRandomized(true);
     };
-  }, []);
+  }, [setIsRandomized, isRandomized, stashes]);
 
   // Creates all card elements
-
-  // TODO: Randomized returns undefined when reaching  this function
   for (let i = 0; i < stashes; i += 1) {
     console.log('Randomized, index', i, ': ', randomized[i]);
     const index = randomized[i];
     console.log(imageData.photos[index]);
+    const image = imageData.photos[index] || imageData.photos[i];
     const cardId = `card-${i}`;
     const divStyle = {
-      // TODO: Must replace i with index once its fixed
-      backgroundImage: `url(${imageData.photos[i].src.medium})`,
+      backgroundImage: `url(${image.src.medium || image.src.medium})`,
     };
     cards.push(
       <div
