@@ -33,7 +33,7 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
       </div>
       <label htmlFor="stashes">Stashes Remembered</label>
       <div>
-        <button onClick={handleLeft}>Left</button>
+        <button onClick={handleLeft}>Less</button>
         <input
           onChange={onChange}
           type="tel"
@@ -41,7 +41,7 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
           id="stashes"
           value={stashes}
         />
-        <button onClick={handleRight}>Right</button>
+        <button onClick={handleRight}>More</button>
       </div>
     </>
   );
