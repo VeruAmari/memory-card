@@ -1,8 +1,11 @@
 #root {
-  padding: 2rem;
   text-align: center;
   width: 100vw;
   height: 100vh;
+
+  --color-1: #a5f1f4;
+  --color-2: #ddfdc7;
+  --color-3: #0b3936;
 }
 .hidden.stash {
   border-radius: 15px;
@@ -10,18 +13,49 @@
   aspect-ratio: 3/4;
   width: 200px;
   background: center / cover no-repeat;
+  transition: all ease-in-out 0.1s;
 }
 .cards.container {
+  padding: 2rem;
   display: grid;
   align-items: center;
   justify-items: center;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-.hidden.stash:hover {
-  box-shadow: 0 0 5px greenyellow;
+.hidden.stash:not(.hover-effects) {
+  position: relative;
+}
+.hover-effects {
+  position: absolute;
+  top: 0%;
+  width: 199px;
+  box-shadow: 0 0 15px var(--color-3);
+  opacity: 0;
+}
+.card {
+  position: relative;
+}
+.card:hover > .hover-effects {
+  opacity: 1;
+}
+.card:hover > .hidden.stash,
+.card:hover > .hover-effects {
   transform: scale(1.02);
 }
-.hidden.stash:active {
+.card:active > .hidden.stash,
+.card:active > .hover-effects {
   transform: scale(0.99);
+}
+.header {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(45deg, var(--color-1), var(--color-2));
+}
+.score {
+  align-items: center;
+}
+.title {
+  font-size: large;
 }

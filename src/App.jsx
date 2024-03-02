@@ -60,9 +60,9 @@ function App() {
   return (
     <>
       <div className="header">
-        <div className="hero-text">Header </div>
+        <h1 className="title">My Acorn Stashes</h1>
         <div className="score">
-          <div className="highest score">
+          <div className="highest-score">
             Max Stashes Found: {maxStashesEmptied}
           </div>
           <div className="current-score">Stashes Found: {stashesEmptied}</div>

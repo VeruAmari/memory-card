@@ -15,7 +15,6 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
   return (
     <>
       <div>
-        <h1 className="title">My Hidden Acorn Stashes</h1>
         <p className="description">
           This hungry squirrel recalls some of her hidden food stashes in the
           forest. Can you help her find her acorns so that she doesn&apos;t
