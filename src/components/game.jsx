@@ -73,13 +73,12 @@ function Game({
       backgroundImage: `url(${image.src.medium || image.src.medium})`,
     };
     cards.push(
-      <div className="card">
+      <div key={'card-' + i} className="card">
         <div className="hidden stash hover-effects"></div>
         <div
           className="hidden stash"
           onMouseUp={handleStashesEmptied}
           id={cardId}
-          key={i}
           style={divStyle}
         ></div>
       </div>,

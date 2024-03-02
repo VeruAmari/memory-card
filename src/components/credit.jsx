@@ -11,7 +11,7 @@ function Credit({ imageData }) {
       for (let i = 0; i < imageData.photos.length; i++) {
         const img = imageData.photos[i];
         const newImage = (
-          <div className="photo">
+          <div key={'credit-' + i} className="photo">
             <legend>Photo by {img.photographer} at Pexels</legend>
             <a href={img.url}>
               <img src={img.src.small} alt={img.alt} />
