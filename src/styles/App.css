@@ -25,6 +25,16 @@
   gap: 0px;
   margin: auto;
 }
+img {
+  max-width: 100%;
+}
+.app {
+  display: grid;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: calc(100% - 3.5rem);
+}
 .hero-text {
   max-width: 60ex;
   padding: 1ex;
@@ -62,6 +72,8 @@
   transform: scale(0.99);
 }
 .header {
+  height: 3.5rem;
+  align-items: center;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
