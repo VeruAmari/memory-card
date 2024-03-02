@@ -8,6 +8,7 @@ function App() {
   const [playing, setPlaying] = useState(false);
   const [stashes, setStashes] = useState(3);
   const [stashesEmptied, setStashesEmptied] = useState(0);
+  const [maxStashesEmptied, setMaxStashesEmptied] = useState(0);
   const [success, setSuccess] = useState(null);
   const [picking, setPicking] = useState(true);
 
@@ -57,11 +58,21 @@ function App() {
 
   return (
     <>
+      <div className="header">
+        Header{' '}
+        <div className="score">
+          <div className="highest score">
+            Max Stashes Found: {maxStashesEmptied}
+          </div>
+          <div className="current-score">Stashes Found: {stashesEmptied}</div>
+        </div>
+      </div>
       {(playing && (
         <Game
           stashes={stashes}
           setPlaying={setPlaying}
           setStashesEmptied={setStashesEmptied}
+          setMaxStashesEmptied={setMaxStashesEmptied}
           stashesEmptied={stashesEmptied}
           setSuccess={setSuccess}
           imageData={imageData}

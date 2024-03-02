@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 function Game({
   stashes,
   setStashesEmptied,
+  setMaxStashesEmptied,
   stashesEmptied,
   setSuccess,
   setPlaying,
@@ -25,7 +26,10 @@ function Game({
     if (newID > 1) {
       setSad(true);
     } else {
-      setStashesEmptied(stashesEmptied + 1);
+      setStashesEmptied((current) => current + 1);
+      setMaxStashesEmptied((current) =>
+        current <= stashesEmptied ? current + 1 : current,
+      );
     }
     // Triggers randomizing on-click
     setIsRandomized(false);
@@ -61,9 +65,8 @@ function Game({
 
   // Creates all card elements
   for (let i = 0; i < stashes; i += 1) {
-    console.log('Randomized, index', i, ': ', randomized[i]);
+    console.log('Creating Cards.');
     const index = randomized[i];
-    console.log(imageData.photos[index]);
     const image = imageData.photos[index] || imageData.photos[i];
     const cardId = `card-${i}`;
     const divStyle = {
@@ -93,7 +96,6 @@ function Game({
 
   return (
     <>
-      <h1>Stashes Visited: {stashesEmptied}</h1>
       <div className="cards container">{cards}</div>
     </>
   );
