@@ -12,53 +12,49 @@ function App() {
   const [picking, setPicking] = useState(true);
 
   const [imageData, setImageData] = useState('');
-  /*
-  TODO: Integrate pexels API for images in cards
-  fetch("https://api.pexels.com/v1/search?query=forest",{
-  headers: {
-    Authorization: "nSA6af1OexPWH12Pso9EnmhgoBh3TPLAGvi6LYhoVghW5bc6pifHIJdK"
-  }
-})
-   .then(resp => {
-     return resp.json()
-   })
-   .then(data => {
-     console.log(data)
-   })
-*/
-  /*
+
+  // API call toggle
+  const callAPI = false;
+
   useEffect(() => {
     let ignore = false;
-    fetch('https://api.pexels.com/v1/search?query=forest', {
-      headers: {
-        Authorization:
-          'nSA6af1OexPWH12Pso9EnmhgoBh3TPLAGvi6LYhoVghW5bc6pifHIJdK',
-      },
-    })
-      .then((resp) => {
-        return resp.json();
+    if (callAPI) {
+      fetch('https://api.pexels.com/v1/search?query=forest', {
+        headers: {
+          Authorization:
+            'nSA6af1OexPWH12Pso9EnmhgoBh3TPLAGvi6LYhoVghW5bc6pifHIJdK',
+        },
       })
-      .then((result) => {
-        if (!ignore) {
-          setImageData(result);
-          console.log(result);
-        }
-      });
-    return () => {
-      ignore = true;
-    };
-  }, []);
-*/
-  useEffect(() => {
-    let ignore = false;
-    if (!ignore) {
-      setImageData(data);
-      console.log(data);
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((result) => {
+          if (!ignore) {
+            setImageData(result);
+            console.log('API called, fetching data from API.');
+          }
+        });
     }
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [callAPI]);
+
+  // Mock API call
+
+  useEffect(() => {
+    let ignore = false;
+    if (!callAPI) {
+      if (!ignore) {
+        setImageData(data);
+        console.log('API not called, fetching data from mock.');
+      }
+    }
+    return () => {
+      ignore = true;
+    };
+  }, [callAPI]);
+
   return (
     <>
       {(playing && (
