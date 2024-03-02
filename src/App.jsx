@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Game } from './components/game';
 import { StartEnd } from './components/startOrEnd';
+import { Credit } from './components/credit';
 // import data from './images.json';
 import './styles/normalize.css';
 import './styles/App.css';
@@ -73,18 +74,21 @@ function App() {
           imageData={imageData}
         ></Game>
       )) || (
-        <div className="app">
-          <StartEnd
-            setStashesEmptied={setStashesEmptied}
-            setPlaying={setPlaying}
-            stashes={stashes}
-            setStashes={setStashes}
-            success={success}
-            setSuccess={setSuccess}
-            picking={picking}
-            setPicking={setPicking}
-          ></StartEnd>
-        </div>
+        <>
+          <div className="app">
+            <StartEnd
+              setStashesEmptied={setStashesEmptied}
+              setPlaying={setPlaying}
+              stashes={stashes}
+              setStashes={setStashes}
+              success={success}
+              setSuccess={setSuccess}
+              picking={picking}
+              setPicking={setPicking}
+            ></StartEnd>
+          </div>
+          <Credit imageData={imageData}></Credit>
+        </>
       )}
     </>
   );
