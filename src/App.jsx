@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Game } from './components/game';
 import { StartEnd } from './components/startOrEnd';
 import data from './images.json';
+import './styles/normalize.css';
 import './styles/App.css';
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
   return (
     <>
       <div className="header">
-        Header{' '}
+        <div className="hero-text">Header </div>
         <div className="score">
           <div className="highest score">
             Max Stashes Found: {maxStashesEmptied}
