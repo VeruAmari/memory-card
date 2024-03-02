@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Game } from './components/game';
 import { StartEnd } from './components/startOrEnd';
-import data from './images.json';
+// import data from './images.json';
 import './styles/normalize.css';
 import './styles/App.css';
 
@@ -16,11 +16,11 @@ function App() {
   const [imageData, setImageData] = useState('');
 
   // API call toggle
-  const callAPI = false;
 
   useEffect(() => {
     let ignore = false;
-    if (callAPI) {
+    const items = JSON.parse(localStorage.getItem('items'));
+    if (!items) {
       fetch('https://api.pexels.com/v1/search?query=forest', {
         headers: {
           Authorization:
@@ -32,30 +32,26 @@ function App() {
         })
         .then((result) => {
           if (!ignore) {
+            localStorage.setItem('items', JSON.stringify(result));
             setImageData(result);
-            console.log('API called, fetching data from API.');
+            console.log(
+              'No data found in local storage, fetching data from API.',
+            );
           }
         });
-    }
-    return () => {
-      ignore = true;
-    };
-  }, [callAPI]);
-
-  // Mock API call
-
-  useEffect(() => {
-    let ignore = false;
-    if (!callAPI) {
+    } else {
       if (!ignore) {
-        setImageData(data);
-        console.log('API not called, fetching data from mock.');
+        console.log('Found items in local storage, avoiding API call.');
+        setImageData(items);
       }
     }
+
     return () => {
       ignore = true;
     };
-  }, [callAPI]);
+  }, []);
+
+  // Mock API call
 
   return (
     <>
@@ -77,16 +73,18 @@ function App() {
           imageData={imageData}
         ></Game>
       )) || (
-        <StartEnd
-          setStashesEmptied={setStashesEmptied}
-          setPlaying={setPlaying}
-          stashes={stashes}
-          setStashes={setStashes}
-          success={success}
-          setSuccess={setSuccess}
-          picking={picking}
-          setPicking={setPicking}
-        ></StartEnd>
+        <div className="app">
+          <StartEnd
+            setStashesEmptied={setStashesEmptied}
+            setPlaying={setPlaying}
+            stashes={stashes}
+            setStashes={setStashes}
+            success={success}
+            setSuccess={setSuccess}
+            picking={picking}
+            setPicking={setPicking}
+          ></StartEnd>
+        </div>
       )}
     </>
   );
