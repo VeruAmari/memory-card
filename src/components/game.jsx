@@ -18,8 +18,27 @@ function Game({
   const [randomized, setRandomized] = useState('');
   const [isRandomized, setIsRandomized] = useState(false);
 
+  // Randomize function
+  function randomize() {
+    console.log('Running randomize.');
+    let next = [];
+    while (next.length < stashes) {
+      const chosenRandomNumber = Math.floor(Math.random() * 30) % stashes;
+      const newNum = chosenRandomNumber;
+      if (!next.includes(newNum)) {
+        next.push(newNum);
+      }
+    }
+    const num = {};
+    for (let i = 0; i < stashes; i++) {
+      num[`${i}`] = next.pop();
+    }
+
+    setRandomized({ ...num });
+  }
+
   // Callback function, click handler
-  function handleStashesEmptied(e) {
+  function handleClick(e) {
     const pic = e.target.style['background-image'];
     const newID = uniqueIDs[pic] ? uniqueIDs[pic] + 1 : 1;
     setUniqueIDs({ ...uniqueIDs, [pic]: newID });
@@ -34,34 +53,11 @@ function Game({
     // Triggers randomizing on-click
     setIsRandomized(false);
   }
-
   // Randomize cards order
-  useEffect(() => {
-    function randomize() {
-      console.log('Running randomize.');
-      let next = [];
-      while (next.length < stashes) {
-        const chosenRandomNumber = Math.floor(Math.random() * 30) % stashes;
-        const newNum = chosenRandomNumber;
-        if (!next.includes(newNum)) {
-          next.push(newNum);
-        }
-      }
-      const num = {};
-      for (let i = 0; i < stashes; i++) {
-        num[`${i}`] = next.pop();
-      }
-
-      setRandomized({ ...num });
-    }
-
-    if (!isRandomized) {
-      randomize();
-    }
-    return () => {
-      setIsRandomized(true);
-    };
-  }, [setIsRandomized, isRandomized, stashes]);
+  if (!isRandomized) {
+    randomize();
+    setIsRandomized(true);
+  }
 
   // Creates all card elements
   for (let i = 0; i < stashes; i += 1) {
@@ -77,7 +73,7 @@ function Game({
         <div className="hidden stash hover-effects"></div>
         <div
           className="hidden stash"
-          onMouseUp={handleStashesEmptied}
+          onMouseUp={handleClick}
           id={cardId}
           style={divStyle}
         ></div>
