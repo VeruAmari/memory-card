@@ -14,8 +14,8 @@ function Game({
   const [uniqueIDs, setUniqueIDs] = useState({});
   const [sad, setSad] = useState(false);
 
-  const [randomized, setRandomized] = useState('');
-  const [isRandomized, setIsRandomized] = useState(false);
+  const [randomizedOrder, setRandomizedOrder] = useState('');
+  const [toBeRandomized, setToBeRandomized] = useState(false);
 
   // Randomize function
   function randomize() {
@@ -33,7 +33,7 @@ function Game({
       num[`${i}`] = next.pop();
     }
 
-    setRandomized({ ...num });
+    setRandomizedOrder({ ...num });
   }
 
   // Callback function, click handler
@@ -50,18 +50,18 @@ function Game({
       );
     }
     // Triggers randomizing on-click
-    setIsRandomized(false);
+    setToBeRandomized(false);
   }
   // Randomize cards order
-  if (!isRandomized) {
+  if (!toBeRandomized) {
     randomize();
-    setIsRandomized(true);
+    setToBeRandomized(true);
   }
   // Creates all card elements
   if (stashes) {
     for (let i = 0; i < stashes; i += 1) {
       console.log('Creating Cards.');
-      const index = randomized[i];
+      const index = randomizedOrder[i];
       const image = imageData.photos[index] || imageData.photos[i];
       const cardId = `card-${i}`;
       const divStyle = {
@@ -85,14 +85,14 @@ function Game({
   useEffect(() => {
     if (sad) {
       setStatus('sad');
-    } else if (stashesEmptied >= stashes && !sad) {
+    } else if (stashesEmptied >= stashes) {
       setStatus('success');
     }
   }, [sad, setStatus, stashes, stashesEmptied]);
 
   return (
     <>
-      <div className="cards container">{cards}</div>
+      <div className="cards container colorize-bg2">{cards}</div>
     </>
   );
 }
