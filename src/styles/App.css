@@ -3,12 +3,17 @@
   width: 100vw;
   height: 100vh;
 
-  --color-1: #a5f1f4;
-  --color-2: #ddfdc7;
+  --color-1: #89e6e9;
+  --color-2: #cdfdad;
   --color-3: #0b3936;
+  --color-4: #d1fcfd;
+  --color-5: #efffe4;
   font-weight: 900;
   --width: 200px;
   --footer-padding: 0.5rem;
+}
+* {
+  box-sizing: border-box;
 }
 .hidden.stash {
   border-radius: 15px;
@@ -24,7 +29,6 @@
   justify-items: center;
   justify-content: center;
   gap: 0px;
-  margin: auto;
 }
 img {
   max-width: 100%;
@@ -35,7 +39,7 @@ img {
   align-items: center;
   align-content: center;
   justify-content: center;
-  min-height: calc(100% - 3.5rem - (var(--footer-padding) * 2) - 2rem);
+  height: calc(100% - 3.5rem - (var(--footer-padding) * 2) - 1.5rem);
 }
 .credit,
 .photo {
@@ -64,10 +68,11 @@ img {
 .cards.container {
   padding: 2rem;
   display: grid;
-  align-items: center;
+  align-items: start;
   justify-items: center;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
+  height: calc(100% - 3.5rem);
 }
 .hidden.stash:not(.hover-effects) {
   position: relative;
@@ -100,9 +105,11 @@ img {
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
 }
-.header,
-.footer {
+.colorize-bg {
   background: linear-gradient(45deg, var(--color-1), var(--color-2));
+}
+.colorize-bg2 {
+  background: linear-gradient(45deg, var(--color-4), var(--color-5));
 }
 .footer {
   width: 100vw;

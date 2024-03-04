@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <div className="header">
+      <div className="header colorize-bg">
         <h1 className="title">Acorn Stashes</h1>
         <div className="score">
           <div className="highest-score">Max Found: {maxStashesEmptied}</div>
@@ -74,7 +74,7 @@ function App() {
         ></Game>
       )) || (
         <>
-          <div className="app">
+          <div className="app colorize-bg2">
             <StartEnd
               setStatus={setStatus}
               status={status}

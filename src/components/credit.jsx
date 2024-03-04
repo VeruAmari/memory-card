@@ -43,7 +43,7 @@ function Credit({ imageData }) {
     visibility: footerDisplay,
   };
   return (
-    <div onClick={openCloseFooter} className="footer">
+    <div onClick={openCloseFooter} className="footer colorize-bg">
       <div className="footer-description">{viewHide} Photos Credit</div>
       <div className="footer credit" style={styles}>
         {images}
