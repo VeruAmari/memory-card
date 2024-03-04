@@ -21,7 +21,7 @@ function Cards({ cards, handleClick }) {
     );
   });
 
-  return <>{madeCards};</>;
+  return <>{madeCards}</>;
 }
 
 export { Cards };
