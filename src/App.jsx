@@ -15,8 +15,7 @@ function App() {
 
   const [imageData, setImageData] = useState('');
 
-  // API call toggle
-
+  // API/localstorage data retriever
   useEffect(() => {
     let ignore = false;
     const items = JSON.parse(localStorage.getItem('items'));
@@ -50,8 +49,6 @@ function App() {
       ignore = true;
     };
   }, []);
-
-  // Mock API call
 
   return (
     <>
