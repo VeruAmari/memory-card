@@ -2,12 +2,11 @@
 import { useEffect, useState } from 'react';
 
 function Game({
+  setStatus,
   stashes,
   setStashesEmptied,
   setMaxStashesEmptied,
   stashesEmptied,
-  setSuccess,
-  setPlaying,
   imageData,
 }) {
   let cards = [];
@@ -58,39 +57,38 @@ function Game({
     randomize();
     setIsRandomized(true);
   }
-
   // Creates all card elements
-  for (let i = 0; i < stashes; i += 1) {
-    console.log('Creating Cards.');
-    const index = randomized[i];
-    const image = imageData.photos[index] || imageData.photos[i];
-    const cardId = `card-${i}`;
-    const divStyle = {
-      backgroundImage: `url(${image.src.medium || image.src.medium})`,
-    };
-    cards.push(
-      <div key={'card-' + i} className="card">
-        <div className="hidden stash hover-effects"></div>
-        <div
-          className="hidden stash"
-          onMouseUp={handleClick}
-          id={cardId}
-          style={divStyle}
-        ></div>
-      </div>,
-    );
+  if (stashes) {
+    for (let i = 0; i < stashes; i += 1) {
+      console.log('Creating Cards.');
+      const index = randomized[i];
+      const image = imageData.photos[index] || imageData.photos[i];
+      const cardId = `card-${i}`;
+      const divStyle = {
+        backgroundImage: `url(${image.src.medium})`,
+      };
+      cards.push(
+        <div key={'card-' + i} className="card">
+          <div className="hidden stash hover-effects"></div>
+          <div
+            className="hidden stash"
+            onMouseUp={handleClick}
+            id={cardId}
+            style={divStyle}
+          ></div>
+        </div>,
+      );
+    }
   }
 
   // Handles checking for sad or success //
   useEffect(() => {
     if (sad) {
-      setSuccess(false);
-      setPlaying(false);
+      setStatus('sad');
     } else if (stashesEmptied >= stashes && !sad) {
-      setSuccess(true);
-      setPlaying(false);
+      setStatus('success');
     }
-  }, [sad, setPlaying, stashes, setSuccess, stashesEmptied]);
+  }, [sad, setStatus, stashes, stashesEmptied]);
 
   return (
     <>

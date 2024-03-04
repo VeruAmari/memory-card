@@ -12,30 +12,24 @@ togglePicking={togglePicking}
 */
 
 function StartEnd({
+  status,
+  setStatus,
   stashes,
-  picking,
-  setPicking,
-  success,
-  setSuccess,
   setStashes,
-  setPlaying,
   setStashesEmptied,
 }) {
   return (
-    (picking && (
+    (status === 'picking' && (
       <Start
         stashes={stashes}
-        setPicking={setPicking}
+        setStatus={setStatus}
         setStashes={setStashes}
-        setPlaying={setPlaying}
         setStashesEmptied={setStashesEmptied}
       ></Start>
     )) || (
       <End
-        setPicking={setPicking}
-        setSuccess={setSuccess}
-        success={success}
-        setPlaying={setPlaying}
+        setStatus={setStatus}
+        status={status}
         setStashesEmptied={setStashesEmptied}
       ></End>
     )

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import hungry from '../assets/hungry-squirrel.png';
 import hungryPortrait from '../assets/hungry-squirrel-portrait.png';
-function Start({ stashes, setPicking, setStashes, setPlaying }) {
+function Start({ setStatus, stashes, setStashes }) {
   function onChange(e) {
     let num = Number(e.target.value);
     if (num > 0 && num < 16) {
@@ -31,8 +31,7 @@ function Start({ stashes, setPicking, setStashes, setPlaying }) {
         <button
           onClick={() => {
             if (stashes > 0) {
-              setPlaying(true);
-              setPicking(false);
+              setStatus('playing');
             }
           }}
         >

@@ -3,29 +3,19 @@
 import { Success } from './success';
 import { Sad } from './sad';
 
-function End({
-  setSuccess,
-  success,
-  setPlaying,
-  setPicking,
-  setStashesEmptied,
-}) {
+function End({ status, setStatus, setStashesEmptied }) {
   function restart() {
-    setSuccess(null);
-    setPlaying(true);
-    setPicking(false);
+    setStatus('playing');
     setStashesEmptied(0);
   }
   function mainMenu() {
-    setSuccess(null);
-    setPlaying(false);
-    setPicking(true);
+    setStatus('picking');
     setStashesEmptied(0);
   }
 
   return (
     <>
-      {(success && <Success />) || <Sad />}
+      {(status === 'success' && <Success />) || <Sad />}
       <button onClick={restart}>Play Again</button>
       <button onClick={mainMenu}>Main Menu</button>
     </>

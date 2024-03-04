@@ -7,12 +7,11 @@ import './styles/normalize.css';
 import './styles/App.css';
 
 function App() {
-  const [playing, setPlaying] = useState(false);
+  const [status, setStatus] = useState('picking');
+  // App status can be picking, playing, success or sad
   const [stashes, setStashes] = useState(3);
   const [stashesEmptied, setStashesEmptied] = useState(0);
   const [maxStashesEmptied, setMaxStashesEmptied] = useState(0);
-  const [success, setSuccess] = useState(null);
-  const [picking, setPicking] = useState(true);
 
   const [imageData, setImageData] = useState('');
 
@@ -63,28 +62,25 @@ function App() {
           <div className="current-score">Stashes Found: {stashesEmptied}</div>
         </div>
       </div>
-      {(playing && (
+      {(status === 'playing' && (
         <Game
+          setStatus={setStatus}
           stashes={stashes}
-          setPlaying={setPlaying}
+          status={status}
           setStashesEmptied={setStashesEmptied}
           setMaxStashesEmptied={setMaxStashesEmptied}
           stashesEmptied={stashesEmptied}
-          setSuccess={setSuccess}
           imageData={imageData}
         ></Game>
       )) || (
         <>
           <div className="app">
             <StartEnd
+              setStatus={setStatus}
+              status={status}
               setStashesEmptied={setStashesEmptied}
-              setPlaying={setPlaying}
               stashes={stashes}
               setStashes={setStashes}
-              success={success}
-              setSuccess={setSuccess}
-              picking={picking}
-              setPicking={setPicking}
             ></StartEnd>
           </div>
           <Credit imageData={imageData}></Credit>
